@@ -19,7 +19,14 @@
               <%= current_user.email %>
             </div>
             <div class="mx-4 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              Sign out
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+            </div>
+          <% else %>
+            <div class="mx-4 invisible sm:visible border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              <%= link_to "Log in", new_user_session_path %><br />
+            </div>
+            <div class="mx-4 invisible sm:visible border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              <%= link_to "Sign up", new_user_registration_path %><br />
             </div>
           <% end %>
         </div>
