@@ -1,7 +1,14 @@
 <div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+  <div class="mx-auto w-full">
 
-    <%= render @room %>
+    <%#= render @room %>
+    <div class="m-3">
+      <div class="text-center">
+        <%= @room.name %>
+      </div>
+
+      <%= render partial: "rooms/chat_box" %>
+    </div>
 
     <% if user_signed_in? && current_user.admin %>
       <%= link_to 'Edit this room', edit_room_path(@room), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
