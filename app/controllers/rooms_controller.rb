@@ -7,6 +7,10 @@ class RoomsController < ApplicationController
     @rooms = Room.all
   end
 
+  def main_room
+    redirect_to main_room_path
+  end
+
   # GET /rooms/1 or /rooms/1.json
   def show
   end

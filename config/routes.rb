@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
-  root to: 'static#home'
+  get '/rooms/1', as: 'main_room'
+
+  root to: "rooms#main_room"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
