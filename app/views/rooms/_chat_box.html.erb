@@ -1,28 +1,19 @@
 <div class="relative mt-6 border border-solid border-gray-200 rounded-2xl w-full">
   
   <div class="m-3 space-y-3 overflow-y-scroll h-96 pb-16 text-sm text-gray-800">
-    <% 3.times do %>
-      <%= render partial: "rooms/message_box_left" %>
+    <% @messages.each do |msg| %>
+      <%= render partial: "rooms/message_box_left", locals: { msg: msg } %>
     <% end %>
-    <% 3.times do |index| %>
-      <%= render partial: "rooms/message_box_right", locals: { index: index } %>
-    <% end %>
-    <% 4.times do %>
-      <%= render partial: "rooms/message_box_left" %>
-    <% end %>
-    <% 1.times do |index| %>
-      <%= render partial: "rooms/message_box_right", locals: { index: index } %>
-    <% end %>
+    
   </div>
   
+  <%= form_with(url: room_messages_path([@room, @message], user_id: current_user.id), action: "create", method: :post, remote: true) do |f| %>
+  
   <div class="flex absolute inset-x-0 bottom-0 h-16 border border-solid border-gray-200 rounded-b-lg bg-gray-200 p-1">
-    <div class="w-5/6 h-9 bg-white m-2 rounded-md text-sm pl-3 pt-2">
-      Some text
-    </div>
-    <div class="w-1/6 h-7 button mt-3 m-2 rounded-lg bg-blue-400 flex shadow-sm cursor-pointer hover:bg-blue-500">
-      <div class="text-white align-middle text-sm text-center mx-auto pt-1 mb-2 font-medium">
-        Send
-      </div>
-    </div>
+    <%= f.text_field :body, class: "w-5/6 h-9 bg-white m-2 rounded-md text-sm pl-3 pt-2" %>
+    <%= f.submit "Send", class: "w-1/6 inline h-7 mt-3 m-2 pl-8 rounded-lg bg-blue-400 flex shadow-sm 
+    cursor-pointer hover:bg-blue-500 inline text-white align-middle text-sm text-center" %>
   </div>
+  <% end %>
+  
 </div>

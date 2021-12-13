@@ -17,6 +17,9 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1 or /rooms/1.json
   def show
+    #@message = Message.new
+    @messages = @room.messages.order('created_at ASC')
+    @message = @room.messages.build(user_id: current_user.id)
   end
 
   # GET /rooms/new

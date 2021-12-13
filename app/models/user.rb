@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :memberships
   has_many :rooms, through: :memberships
+  has_many :messages
 
   after_create :join_first_room
 
