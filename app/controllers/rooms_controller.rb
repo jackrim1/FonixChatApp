@@ -8,7 +8,11 @@ class RoomsController < ApplicationController
   end
 
   def main_room
-    redirect_to main_room_path
+    if Room.first
+      redirect_to root_path
+    else
+      redirect_to home_path
+    end
   end
 
   # GET /rooms/1 or /rooms/1.json
