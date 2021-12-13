@@ -2,9 +2,12 @@
   
   <div class="m-3 space-y-3 overflow-y-scroll h-96 pb-16 text-sm text-gray-800">
     <% @messages.each do |msg| %>
-      <%= render partial: "rooms/message_box_left", locals: { msg: msg } %>
+      <% if user_signed_in? && msg.user == current_user.id %>
+        <%= render partial: "rooms/message_box_left", locals: { msg: msg } %>
+      <% else %>
+        <%= render partial: "rooms/message_box_right", locals: { msg: msg } %>
+      <% end %>
     <% end %>
-    
   </div>
   
   <%= form_with(url: room_messages_path([@room, @message], user_id: current_user.id), action: "create", method: :post, remote: true) do |f| %>
